@@ -92,7 +92,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_id`, `name`, `mail`, `password`, `created_date`, `updated_date`) VALUES
-(1, 123456789, 'テスト', 'test@test.com', 'password', '2024-06-14 04:56:35', '2024-06-14 04:56:35');
+(1, 123456789, 'テスト', 'test@test.com', '$2y$10$ovD9MhNKXGRn.DIqXbm82OYnnfi9sunqDQhkddZXbkvCCWXuZf.Oi', '2024-06-14 04:56:35', '2024-06-14 04:56:35'),
+(2, 9999, 'test', 'test@gmail.com', '$2y$10$ovD9MhNKXGRn.DIqXbm82OYnnfi9sunqDQhkddZXbkvCCWXuZf.Oi', '2024-06-14 05:35:35', '2024-06-14 05:35:35');
 
 --
 -- ダンプしたテーブルのインデックス
