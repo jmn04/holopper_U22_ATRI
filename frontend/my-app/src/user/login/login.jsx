@@ -21,8 +21,9 @@ export const Login = () => {
                 },
                 body: JSON.stringify({ mail: username, password: password }),
             });
+            console.log("aaa")
             const data = await response.json();
-
+            console.log(data)
             if (response.ok && data.is_login) {
                 login(data); 
                 localStorage.setItem('user', JSON.stringify(data)); 
