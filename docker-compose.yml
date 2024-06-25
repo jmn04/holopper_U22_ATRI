@@ -1,0 +1,48 @@
+version: '3'
+services:
+  frontend:
+    container_name: react-frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/my-app:/app
+    depends_on:
+      - backend
+    networks:
+      - my_network
+
+  backend:
+    container_name: php-backend
+    build: ./backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./backend/api/atri_api:/var/www/html/api
+    depends_on:
+      - db
+    networks:
+      - my_network
+
+  db:
+    container_name: mysql-db
+    build: ./db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: holopper
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/holopper.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - my_network
+
+volumes:
+  db_data:
+
+networks:
+  my_network:
