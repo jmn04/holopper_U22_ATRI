@@ -7,3 +7,7 @@ Webアプリをすぐに構築できるよう、dockerを使用しています�
 docker-compose.ymlが存在するディレクトリで、\
 `docker-compose up --build`\
 を実行してください。
+
+## コンテナ停止方法
+`docker-compose down`\
+を実行してください。
