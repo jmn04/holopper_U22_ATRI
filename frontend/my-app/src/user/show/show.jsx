@@ -23,7 +23,7 @@ const Model = ({ url }) => {
   const [data, setData] = useState('');
   const [streamActive, setStreamActive] = useState(true); 
 
-  useEffect(() => {
+  /* useEffect(() => {
     const fetchStream = async () => {
       const response = await fetch('http://127.0.0.1:5000/run-script');
       console.log(response.body)
@@ -36,7 +36,6 @@ const Model = ({ url }) => {
         if (done) break;
         const chunk = decoder.decode(value, { stream: true });
         setData(chunk)
-        /* await new Promise(resolve => setTimeout(resolve, 1000)); */
       }
     };
     fetchStream();
@@ -65,7 +64,7 @@ const Model = ({ url }) => {
     if (isRotating && scene) {
       scene.rotation.y += 0.01; // Y軸を中心に回転
     }
-  });
+  }); */
 
   return <primitive object={scene} scale={[1.2, 1.2, 1.2]} />;
 };
@@ -89,7 +88,12 @@ const CanvasBox = ({ modelUrl, rotation }) => {
 export const Show = () => {
   const [rotation, setRotation] = useState([0, 7 * Math.PI / 4, 0]);
   const location = useLocation();
-  const modelUrl = location.state ? `http://localhost/api/assets/models/${location.state.state}` : '';
+  const [url, setUrl] = useState('');
+  const modelFailName = location.state ? location.state.state : '';
+  useEffect(() => {
+    setUrl(`http://localhost:80/api/getModel/index.php?file=${modelFailName}`);
+  }, []);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -104,13 +108,13 @@ export const Show = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  if (!modelUrl) {
+  if (!modelFailName) {
     return <div>モデルのURLが指定されていません。</div>;
   }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <CanvasBox modelUrl={modelUrl} rotation={rotation} />
+      <CanvasBox modelUrl={url} rotation={rotation} />
     </Suspense>
   );
 };
