@@ -89,7 +89,7 @@ export const Model = () => {
     };
     console.log("error")
 
-    fetch("http://localhost/api/model/", options)
+    fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/model/`, options)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
@@ -127,7 +127,7 @@ export const Model = () => {
               <div key={index} css={modelContainer}>
                 <Link to={"/model/"+item.model_id}>
                 <div css={img}>
-                  <img src={"http://localhost/api/assets/img/"+item.img_file_name} alt="" />
+                  <img src={`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/assets/img/`+item.img_file_name} alt="" />
                 </div>
                 <div css={text}>
                   <h3>{item.title}</h3>
