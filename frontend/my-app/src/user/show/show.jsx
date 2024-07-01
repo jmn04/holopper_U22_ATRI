@@ -23,9 +23,9 @@ const Model = ({ url }) => {
   const [data, setData] = useState('');
   const [streamActive, setStreamActive] = useState(true); 
 
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchStream = async () => {
-      const response = await fetch('http://127.0.0.1:5000/run-script');
+      const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/run-script`);
       console.log(response.body)
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -41,7 +41,7 @@ const Model = ({ url }) => {
     fetchStream();
     return () => {
       setStreamActive(false);
-      fetch('http://127.0.0.1:5000/end-script')
+      fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
@@ -64,7 +64,7 @@ const Model = ({ url }) => {
     if (isRotating && scene) {
       scene.rotation.y += 0.01; // Y軸を中心に回転
     }
-  }); */
+  });
 
   return <primitive object={scene} scale={[1.2, 1.2, 1.2]} />;
 };
@@ -91,7 +91,7 @@ export const Show = () => {
   const [url, setUrl] = useState('');
   const modelFailName = location.state ? location.state.state : '';
   useEffect(() => {
-    setUrl(`http://localhost:80/api/getModel/index.php?file=${modelFailName}`);
+    setUrl(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/getModel/index.php?file=${modelFailName}`);
   }, []);
 
 
