@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import React, { useState, useContext } from 'react';
+import { css, keyframes } from "@emotion/react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import { useState, useContext, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 
@@ -9,6 +12,25 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { isLoggedIn,login } = useContext(AuthContext);
+    const [isFading, setIsFading] = useState(false);
+
+    // エラーメッセージのフェードアウト処理
+    useEffect(() => {
+        if (error) {
+            const timer1 = setTimeout(() => {
+                setIsFading(true);
+            }, 4000); // 4秒後にフェードアウトを開始
+            const timer2 = setTimeout(() => {
+                setError('');
+                setIsFading(false);
+            }, 5000); // 5秒後にエラーメッセージをクリア
+
+            return () => {
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+            };
+        }
+    }, [error]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,30 +65,69 @@ export const Login = () => {
         {isLoggedIn ? (
             <Navigate to="/" />
         ) : (
-            <>
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
+            <div>
+                {/* フラッシュメッセージ */}
+                {error && <Alert severity="error"
+                css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>{error}</Alert>}
+                {/* タイトル */}
+                <h2 css={titleStyle}>ログイン</h2>
+                {/* 入力フォーム */}
+                <form onSubmit={handleSubmit} css={formStyle}>
                     <div>
-                        <label>Username</label>
-                        <input
-                        type="text"
-                        value={username}
+                        {/* ユーザー名入力 */}
+                        <TextField type="text" value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        required/>
+                        label="User Name"  variant="outlined" required
+                        css={textFieldStyle} />
                     </div>
                     <div>
-                        <label>Password</label>
-                        <input
-                        type="password"
-                        value={password}
+                        {/* パスワード入力 */}
+                        <TextField type="password" value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required />
+                        label="Password" variant="outlined" required
+                        css={textFieldStyle} />
                     </div>
-                        {error && <div style={{ color: 'red' }}>{error}</div>}
-                        <button type="submit">Login</button>
+                        {/* ログインボタン */}
+                        <Button type="submit" variant="contained"
+                        color="primary" css={buttonStyle}>Login</Button>
                 </form>
-            </>
+            </div>
         )}
         </div>
     );
 };
+
+// スタイル設定
+const mgBottom = "4.2rem";
+
+const fadeOut = keyframes({
+    from: { opacity: 1 },
+    to: { opacity: 0 },
+});
+
+const titleStyle = css({
+    fontSize: '2.4rem',
+    // fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: '4rem',
+    marginBottom: mgBottom,
+});
+
+const formStyle = css({
+    textAlign: 'center',
+    // display: 'flex',
+    flexDirection: 'column',
+});
+
+const textFieldStyle = css({
+    width: '50%',
+    marginBottom: mgBottom,
+    fontSize: '150%',
+    textAlign: 'left',
+});
+
+const buttonStyle = css({
+    padding: '1.2rem',
+    width: '20%',
+    textAlign: 'center',
+});
