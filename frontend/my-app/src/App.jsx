@@ -44,6 +44,9 @@ padding: 1rem;
   height: 100%
 }
 `
+const title = css`
+  font-size: 1.8rem;
+`
 
 const header = css`
 grid-row: 1 / 2;
