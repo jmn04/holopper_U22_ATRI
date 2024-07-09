@@ -4,6 +4,7 @@ import React, { useState,useContext } from 'react';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AuthContext } from '../../AuthContext';
+import { styled } from '@mui/material/styles';
 
 export const FileUpload = () => {
     const [title, setTitle] = useState('');
@@ -118,12 +119,12 @@ export const FileUpload = () => {
         </div>
       <div>
         <form onSubmit={handleSubmit} css={formStyle}>
-          <div>
+          <div css={fileBox}>
             {/* <input type="file" accept=".jpeg,.jpg,.png" onChange={handleThumbnailChange} />
             <button>JPEGアップロード</button> */}
-            <Button
+            <CustomButton
               component="label"
-              style={fileUpButton}
+              // style={fileUpButton}
               onChange={handleThumbnailChange}
             >
               モデル画像アップロード（JPEG）
@@ -132,14 +133,13 @@ export const FileUpload = () => {
                 accept=".jpeg,.jpg,.png"
                 css={fileUpMain}
               />
-            </Button>
+            </CustomButton>
           </div>
-          <div>
+          <div css={fileBox}>
             {/* <input type="file" accept=".glb" onChange={handleGlbChange} />
             <button>GLBアップロード</button> */}
-            <Button
+            <CustomButton
               component="label"
-              style={fileUpButton}
               onChange={handleGlbChange}
             >
               3Dモデルアップロード（GLB）
@@ -148,8 +148,9 @@ export const FileUpload = () => {
                 accept=".glb"
                 css={fileUpMain}
               />
-            </Button>
+            </CustomButton>
           </div>
+          <div css={inputTextBox}>
           <div>
             {/* <label>タイトル</label>
             <input
@@ -185,6 +186,8 @@ export const FileUpload = () => {
             multiline
             required
             css={textFieldStyle} />
+          </div>
+
           </div>
             {error && <div style={{ color: 'red' }}>{error}</div>}
             {/* <button type="submit">登録</button> */}
@@ -243,6 +246,29 @@ const formStyle = css({
     flexDirection: 'column',
 });
 
+// fileボタンのスタイル
+const fileBox = css({
+  margin: '1% 0',
+});
+
+const CustomButton = styled(Button)({
+  border: '1px solid #0055f2', // 枠線のスタイル
+  textTransform: 'none', // テキストの大文字化を防ぐ
+  color: '#0000EE', // テキストの色をリンク色に
+  backgroundColor: 'transparent', // 背景色を透明に
+  boxShadow: 'none', // 影を削除
+  fontSize: '1.2rem',
+  width: '70%',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  '&:hover': {
+    backgroundColor: '#f2f2f2', // ホバー時の背景色をグレーに
+    textDecoration: 'underline', // ホバー時の下線を追加
+  },
+});
+
+// テキストフィールドのスタイル
 const textFieldStyle = css({
     width: '50%',
     marginBottom: mgBottom,
@@ -250,15 +276,15 @@ const textFieldStyle = css({
     textAlign: 'left',
 });
 
+const inputTextBox = css({
+  marginTop:'3%'
+})
+
+// 登録ボタンのスタイル
 const buttonStyle = css({
-    padding: '1.2rem',
-    width: '20%',
-    textAlign: 'center',
+  padding: '1.2rem',
+  width: '20%',
+  textAlign: 'center',
+  fontSize: '1.2rem',
 });
 
-const fileUpButton = css({
-  border: 'solid 1px #00000',
-  color: '#000000',
-  position: 'relative',
-  overflow: 'hidden'
-});
