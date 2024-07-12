@@ -18,22 +18,19 @@ import { Register } from './user/createUser/register.jsx';
 
 
 const box = css`
-  display: grid;
+  display: flex;
   width: 100%;
   height: 100vh;
-  grid-template-rows: 10vh 1fr 5vh;
-  grid-template-columns: minmax(20%,200px) 1fr;
 `
 
 const main = css`
   overflow: hidden;
-  grid-row: 1 / 3;
-  grid-column: 2 / 3;
+  flex: 1;
 `;
 
 const mainWrapper = css`
 width: 100%;
-height: 100%;
+height: 95%;
 padding: 2.5%;
 `
 
@@ -54,13 +51,13 @@ grid-column: 2 / 3;
 `
 
 const navigation = css`
-grid-row: 1 / 4;
-grid-column: 1 / 2;
+width: 20%;
+max-width: 200px;
 `
 
 const footer = css`
-grid-row: 3 / 4;
-grid-column: 2 / 3;
+width: 100%;
+height: 5%;
 `
 
 const contentBox = css`
@@ -114,9 +111,9 @@ function App() {
                   </Routes>
                 </div>
               </div>
-            </div>
-            <div css={footer}>
-              <Footer></Footer>
+              <div css={footer}>
+                <Footer></Footer>
+              </div>
             </div>
           </div>
   );
