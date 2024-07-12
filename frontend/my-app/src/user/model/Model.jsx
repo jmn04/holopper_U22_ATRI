@@ -11,20 +11,19 @@ height: 100%;
 `
 
 const contentTitle = css`
-width: 100%;
-margin: 1rem 0;
-h2{
+  margin: 1%;
   border-bottom: solid 2px #000000;
-  font-size: 2.2rem;
-  font-weight: 600;
-  padding: 0.4rem 0.2rem;
-}
+  h2{
+    font-size: 2.4rem;
+    font-weight: 600;
+    padding: 0.4rem 0.2rem;
+  }
 `;
 
 const contentBlock = css`
-margin: 1rem;
-overflow-y: scroll;
-flex: 1;
+  margin: 1rem 3vw;
+  overflow-y: scroll;
+  // flex: 1;
 `;
 
 const title = css`

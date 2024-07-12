@@ -7,24 +7,32 @@ import { AuthContext } from '../../AuthContext';
 
 
 const navigation = css`
-height: 100%;
-background-color: #ffffff;
-// width: 100%;
-width: 10vw;
-border-right: 2px solid #000000;
-box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  background-color: #FFFFFF;
+  width: 10vw;
+  border-right: 2px solid #000000;
+  box-sizing: border-box;
+
+// height: 100%;
+// background-color: #ffffff;
+// // width: 100%;
+// width: 10vw;
+// border-right: 2px solid #000000;
+// box-sizing: border-box;
 `;
 
 const navigationTop = css`
-border-bottom: solid 2px #000000;
-height: 10vh;
-display: flex;
-justify-content: center;
-align-items: center;
-h1 {
-    font-size: 1.4rem;
-    font-weight: 600;
-}`;
+    border-bottom: solid 2px #000000;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }`;
 
 const navigationBox = css`
 border-bottom: solid 2px #000000;

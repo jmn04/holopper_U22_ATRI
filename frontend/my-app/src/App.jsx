@@ -17,57 +17,55 @@ import { Show } from './user/show/show.jsx'
 
 
 const box = css`
-  display: grid;
-  width: 100%;
-  height: 100vh;
-  grid-template-rows: 10vh 1fr 5vh;
-  // grid-template-columns: 100px 1fr;
+
 `
 
 const main = css`
-  overflow: hidden;
-  margin: 0 5vw;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
+  height: 90vh
+  margin-top :10vh;
+  margin-left: 10vw;
 `;
 
 const mainWrapper = css`
-width: 100%;
-height: 100%;
-padding: 5%;
+  // overflow: hidden;
+  margin: 14vh 4vw 0;
 `
 
 const mainContent = css`
-border: solid 1px #000000;
-height: 100%;
-padding: 1rem;
-> div{
-  height: 100%
-}
+  border: solid 1px #000000;
+  width: 80vw;
+  height: 100%;
+  margin 10vw;
+  // padding: 1rem;
+  > div{
+    height: 80vh
+  }
 `
 const title = css`
   font-size: 1.8rem;
 `
 
 const header = css`
-grid-row: 1 / 2;
-grid-column: 2 / 3;
 `
 
 const navigation = css`
-grid-row: 1 / 4;
-grid-column: 1 / 2;
 `
 
 const footer = css`
-grid-row: 3 / 4;
-grid-column: 2 / 3;
+margin-left: 10vw;
 `
 
-const contentBox = css`
-height: 100%;
-`
-
+const contentTitle = css`
+  // width: 100%;
+  // max-width: auto;
+  margin: 1%;
+  border-bottom: solid 2px #000000;
+  h2{
+    font-size: 2.4rem;
+    font-weight: 600;
+    padding: 0.4rem 0.2rem;
+  }
+`;
 
 function App() {
   const { userID } = useContext(AuthContext);

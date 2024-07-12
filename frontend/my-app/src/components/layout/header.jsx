@@ -5,12 +5,23 @@ import { AuthContext } from '../../AuthContext';
 import { Link } from "react-router-dom";
 
 const header = css`
+    // display: flex;
+    // justify-content: right;
+    // align-items: center;
+    // width: 90vw;
+    // height: 10vh;
+    // background-color: #0081ca;
+    // border-bottom: #b6d6e4 solid 2px;
+
     display: flex;
     justify-content: right;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: #0081ca;
+    position: fixed;
+    top: 0;
+    background-color: #0081CA;
+    width: 90vw;
+    margin-left: 10vw;
+    height: 10vh;
     border-bottom: #b6d6e4 solid 2px;
 `;
 

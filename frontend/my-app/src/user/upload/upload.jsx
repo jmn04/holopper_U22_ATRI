@@ -115,9 +115,9 @@ export const FileUpload = () => {
       <div css={contentWrapper}>
         <div css={contentTitle}>
           {/* タイトル */}
-          <h2>登録モデル</h2>
+          <h2>モデル登録</h2>
         </div>
-      <div>
+      <div css={contentStyle}>
         <form onSubmit={handleSubmit} css={formStyle}>
           <div css={fileBox}>
             {/* <input type="file" accept=".jpeg,.jpg,.png" onChange={handleThumbnailChange} />
@@ -204,24 +204,27 @@ const contentWrapper = css`
   display: flex;    
   flex-direction: column;
   height: 100%;
+  // margin: 5%;
 `
 
 const contentTitle = css`
-  width: 100%;
-  margin: 1rem 0;
+  margin: 1%;
+  border-bottom: solid 2px #000000;
   h2{
-    border-bottom: solid 2px #000000;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 600;
     padding: 0.4rem 0.2rem;
   }
 `;
+const contentStyle = css({
+  margin: '1rem 3vw',
+  overflowY: 'scroll',
+})
 
 const fileUpMain = css`
   opacity:0;
   appearance: none;
   position: absolute;
-  }
 `;
 
 // スタイル設定
