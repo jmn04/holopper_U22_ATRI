@@ -9,7 +9,8 @@ import { AuthContext } from '../../AuthContext';
 const navigation = css`
 height: 100%;
 background-color: #ffffff;
-width: 100%;
+// width: 100%;
+width: 10vw;
 border-right: 2px solid #000000;
 box-sizing: border-box;
 `;

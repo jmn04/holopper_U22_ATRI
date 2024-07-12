@@ -21,11 +21,12 @@ const box = css`
   width: 100%;
   height: 100vh;
   grid-template-rows: 10vh 1fr 5vh;
-  grid-template-columns: 100px 1fr;
+  // grid-template-columns: 100px 1fr;
 `
 
 const main = css`
   overflow: hidden;
+  margin: 0 5vw;
   grid-row: 2 / 3;
   grid-column: 2 / 3;
 `;

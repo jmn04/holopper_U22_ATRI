@@ -40,7 +40,8 @@ const modelWrapper = css`
 `
 
 const modelContainer = css`
-  width: calc( (100% - 2rem * 2) / 3 );
+  width: calc( (88% - 2rem * 2) / 3 );
+  margin: 2%;
   aspect-ratio: 1 / 1;
   position: relative;
   border: solid 1px #000000;
