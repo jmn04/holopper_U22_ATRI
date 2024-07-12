@@ -15,7 +15,7 @@ width: 100%;
 margin: 1rem 0;
 h2{
   border-bottom: solid 2px #000000;
-  font-size: 1.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
   padding: 0.4rem 0.2rem;
 }
@@ -28,7 +28,7 @@ flex: 1;
 `;
 
 const title = css`
-  font-size: 2rem;
+  font-size: 1.8rem;
 `
 
 const modelWrapper = css`
@@ -40,25 +40,29 @@ const modelWrapper = css`
 `
 
 const modelContainer = css`
-  width: calc( (100% - 2rem * 2) / 3 );
+  width: calc( (88% - 2rem * 2) / 3 );
+  margin: 2%;
   aspect-ratio: 1 / 1;
   position: relative;
+  border: solid 1px #000000;
 `
 
 const text = css`
-position: absolute;
-bottom: 0;
-left: 0;
-background: black;
-padding: 0.5rem;
-width: 100%;
-color: white;
-h3,p{
-  margin: 0.25rem;
-}
-h3{
-  font-size: 1.6rem;
-}
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: black;
+  padding: 0.5rem;
+  width: 100%;
+  color: white;
+  opacity: 0.9;
+  h3,p{
+    margin: 0.25rem;
+  }
+  h3{
+    font-size: 1.6rem;
+    margin-bottom: 0.4rem;
+  }
 `
 
 const img = css`
@@ -131,7 +135,7 @@ export const Model = () => {
                 </div>
                 <div css={text}>
                   <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                  {/* <p>{item.description}</p> */}
                   <p>{item.updated_date}</p>
                 </div>
                 </Link>

@@ -16,7 +16,7 @@ width: 100%;
 margin: 1rem 0;
 h2{
   border-bottom: solid 2px #000000;
-  font-size: 1.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
   padding: 0.4rem 0.2rem;
 }
@@ -29,7 +29,7 @@ flex: 1;
 `;
 
 const title = css`
-  font-size: 2rem;
+  font-size: 1.8rem;
 `
 
 const modelWrapper = css`
@@ -46,48 +46,79 @@ const modelContainer = css`
 `
 
 const img = css`
-    width: 50%;
-    height: 100%;
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+  width: 50%;
+  height: 100%;
+  img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
 `
 
 const text = css`
-background: black;
-padding: 0.5rem;
-width: 100%;
-color: white;
-h3,p{
-  margin: 0.25rem;
-}
-h3{
-  font-size: 1.6rem;
-}
+  // background: black;
+  padding: 0.5rem;
+  width: 100%;
+  margin: 2%;
+  // color: white;
+  h3,p{
+    margin: 0.25rem;
+  }
+  h3{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #000000;
+  }
+  p{
+    font-size: 1.4rem;
+    // padding-left: 1rem;
+  }
+  max-height: 100%;
 `
 
 const contentBox = css`
-display:flex;
+  display:flex;
+  border: solid 1px #000000;
 `
 
 const button = css`
-display: block;
-text-align: center;
-vertical-align: middle;
-text-decoration: none;
-width: 120px;
-margin: auto;
-padding: 1rem 4rem;
-font-weight: bold;
-border: 2px solid #27acd9;
-background: #27acd9;
-color: #fff;
-&:hover {
-	color: #27acd9;
-	background: #fff;
-}`
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  width: 120px;
+  margin: auto;
+  padding: 1rem 4rem;
+  font-weight: bold;
+  border: 2px solid #27acd9;
+  background: #27acd9;
+  color: #fff;
+  &:hover {
+  	color: #27acd9;
+  	background: #fff;
+  }
+  font-size: 1.2rem
+  margin: 0.5rem
+`
+
+const buttonBox1 = css`
+  margin-top:10%;
+`
+const buttonBox2 = css`
+  margin-top:3%;
+  div{
+      border: 1px solid #27acd9;
+      background: #ffffff;
+    p{
+      color: #000000;
+      font-weight: 300;
+    }&:hover{
+      background: #e9e9e9;
+      font-weight: 600;
+    }
+  }
+`
 
 export const ModelDetail = () => {
   
@@ -141,16 +172,21 @@ export const ModelDetail = () => {
                         <img src={`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/assets/img/`+item.img_file_name} alt="" />
                     </div>
                     <div css={text}>
-                        <h3>{item.title}</h3>
-                        <p>{item.description}</p>
-                        <p>{item.updated_date}</p>
+                        <h3>モデル名：{item.title}</h3>
+                        <p>説明：{item.description}</p>
+                        <p>登録日：{item.updated_date}</p>
                         
                         {/* <Link to={"/show/"+model_id} state={{ state: item.model_file_name } }>
                             <div css={button}>
                                 <p>投影</p>
                             </div>
                         </Link> */}
+                        <div css={buttonBox1}>
                         <Button path={"/show/"+model_id} text="投影" send_data={item.model_file_name}></Button>
+                        </div>
+                        <div css={buttonBox2}>
+                        <Button path={"/model"} text="戻る" send_data={item.model_file_name}></Button>
+                        </div>
                     </div>
                 </div>
               </div>
