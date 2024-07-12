@@ -63,7 +63,7 @@ export const FileUpload = () => {
         console.error('アップロード失敗', error);
       }
     };
-  
+
 
  /*  const handleJpegUpload = async () => {
     if (!jpegFile) {
