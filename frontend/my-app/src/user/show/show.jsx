@@ -4,7 +4,8 @@ import React, { useEffect, useState, Suspense, startTransition, useRef } from 'r
 import { useLocation } from 'react-router-dom';
 import { Canvas, render, useFrame } from '@react-three/fiber';
 import { useGLTF } from "@react-three/drei";
-import { OrbitControls, PerspectiveCamera, Stage } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Stage,Clone } from '@react-three/drei';
+import io from "socket.io-client"
 
 const show = css`
   position: absolute;
@@ -16,15 +17,25 @@ const show = css`
   background: black;
 `;
 
+/* const socket = io(`http://${process.env.REACT_APP_IP_ADRESS}:5000`) */
 
 const Model = ({ url }) => {
   const { scene } = useGLTF(url);
+  const { group } = useRef();
   const [isRotating, setIsRotating] = useState(false);
   const [data, setData] = useState('');
   const [streamActive, setStreamActive] = useState(true); 
 
   useEffect(() => {
-    const fetchStream = async () => {
+    const fetchStream = () => {
+      /* socket.emit('join', {room: 'room1'});
+      socket.on('response', (data)=> {
+        setData(data)
+      })
+
+      socket.emit('run-script'); */
+    }
+    /* const fetchStream = async () => {
       const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/run-script`);
       console.log(response.body)
       const reader = response.body.getReader();
@@ -37,22 +48,21 @@ const Model = ({ url }) => {
         const chunk = decoder.decode(value, { stream: true });
         setData(chunk)
       }
-    };
+    }; */
     fetchStream();
     return () => {
       setStreamActive(false);
-      fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
+      /* fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
         }
         return res.json();
-      }) 
+      })  */
     };
   }, [streamActive]);
 
   useEffect(() => {
-    console.log(data); 
     if (data === "swipe") {
       setIsRotating(true);
     }else{
@@ -66,7 +76,14 @@ const Model = ({ url }) => {
     }
   });
 
-  return <primitive object={scene} scale={[1.2, 1.2, 1.2]} />;
+  return (
+    <group ref={group}>
+      <Clone object={scene} scale={1.2} position={[-1,0,0]} rotation={[Math.PI/2 ,0,Math.PI/2]}/>
+      <Clone object={scene} scale={1.2} position={[1,0,0]} rotation={[Math.PI/2 ,0,Math.PI/2]}/>
+      <Clone object={scene} scale={1.2} position={[0,-1,0]} />
+      <Clone object={scene} scale={1.2} position={[0,1,0]} rotation={[0,Math.PI,0]}/>
+      {/* <primitive object={scene} scale={[1.2, 1.2, 1.2]} /> */}
+    </group>);
 };
 
 const CanvasBox = ({ modelUrl, rotation }) => {
