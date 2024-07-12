@@ -10,12 +10,10 @@ const navigation = css`
 height: 100%;
 background-color: #ffffff;
 width: 100%;
-border-right: 2px solid #000000;
 box-sizing: border-box;
 `;
 
 const navigationTop = css`
-border-bottom: solid 2px #000000;
 height: 10vh;
 display: flex;
 justify-content: center;
@@ -26,7 +24,6 @@ h1 {
 }`;
 
 const navigationBox = css`
-border-bottom: solid 2px #000000;
 height: 10vh;
 display: flex;
 justify-content: center;
@@ -40,13 +37,13 @@ height: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-    a {
+    a,button {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
-        font-size: 1.2rem;
+        font-size: 1.6rem;
         text-decoration: none;
         color: inherit;
     }
@@ -57,7 +54,12 @@ align-items: center;
 `;
 
 const tabFooter = css`
-border-top: #000000 solid 2px;
+height: 28vh;
+border-bottom: #000000 solid 1px;
+margin-bottom: calc(2vh - 1px);
+display: flex;
+flex-direction: row;
+align-items: flex-end;
 p {
     margin: 5% 5%;
     img {

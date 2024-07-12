@@ -14,6 +14,7 @@ import { Footer } from './components/layout/footer.jsx';
 import { AuthContext } from './AuthContext';
 import { FileUpload } from './user/upload/upload.jsx';
 import { Show } from './user/show/show.jsx'
+import { Register } from './user/createUser/register.jsx';
 
 
 const box = css`
@@ -44,6 +45,9 @@ padding: 1rem;
   height: 100%
 }
 `
+const title = css`
+  font-size: 1.8rem;
+`
 
 const header = css`
 grid-row: 1 / 2;
@@ -70,8 +74,9 @@ function App() {
   console.log(userID)
   const navigate = useNavigate();
   const location = useLocation();
+  const pathname = location.pathname;
   useEffect(() => {
-    if (userID == null) {
+    if (userID == null && pathname != '/register') {
       navigate('/login');
     }
   }, [userID,location.pathname]);
@@ -103,6 +108,7 @@ function App() {
                     <Route path="/model" element={<Model />} />
                     <Route path="/model/:model_id" element={<ModelDetail />} />
                     <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Register/>} />
                     <Route path="/show/:model_id" element={<Show />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/upload" element={<FileUpload />} />
