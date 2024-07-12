@@ -8,7 +8,7 @@ import { Model } from './user/model/Model.jsx';
 import { ModelDetail } from './user/modelDetail/modelDetail.jsx';
 import Settings from './user/settings/SettingsPage.jsx';
 import { Login } from './user/login/login.jsx';
-import { Header } from './components/layout/header.jsx';
+/* import { Header } from './components/layout/header.jsx'; */
 import { Navigation } from './components/layout/navigation.jsx';
 import { Footer } from './components/layout/footer.jsx';
 import { AuthContext } from './AuthContext';
@@ -22,23 +22,22 @@ const box = css`
   width: 100%;
   height: 100vh;
   grid-template-rows: 10vh 1fr 5vh;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 200px 1fr;
 `
 
 const main = css`
   overflow: hidden;
-  grid-row: 2 / 3;
+  grid-row: 1 / 3;
   grid-column: 2 / 3;
 `;
 
 const mainWrapper = css`
 width: 100%;
 height: 100%;
-padding: 5%;
+padding: 2.5%;
 `
 
 const mainContent = css`
-border: solid 1px #000000;
 height: 100%;
 padding: 1rem;
 > div{
@@ -93,10 +92,10 @@ function App() {
     return null; // ユーザーがログインしていない場合、何もレンダリングしない
   } */
   return (
-          <div css={box}>
+          <div css={box}>{/* 
             <div css={header}>
               <Header userName={"テスト"}></Header>
-            </div>
+            </div> */}
             <div css={navigation}>
               <Navigation></Navigation>
             </div>
