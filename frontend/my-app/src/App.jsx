@@ -30,8 +30,9 @@ const main = css`
 
 const mainWrapper = css`
 width: 100%;
-height: 95%;
+height: 90%;
 padding: 2.5%;
+margin-top: 5vh;
 `
 
 const mainContent = css`
