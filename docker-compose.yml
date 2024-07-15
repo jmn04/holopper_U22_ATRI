@@ -52,6 +52,13 @@ services:
       - ./db/holopper.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - my_network
+  
+  swagger-ui:
+    build: ./swagger-ui
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./swagger-ui:/usr/src/swagger-ui
 
 volumes:
   db_data:
