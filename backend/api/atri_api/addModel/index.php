@@ -37,7 +37,9 @@ $response = [
     $modelUploadFilePath = $modelUploadDir . $modelFileName;
     $imgUploadFilePath = $imgUploadDir . $imgFileName;
     
-    if (move_uploaded_file($modelFile['tmp_name'], $modelUploadFilePath) && move_uploaded_file($imgFile['tmp_name'], $imgUploadFilePath)) {
+    try{
+        move_uploaded_file($modelFile['tmp_name'], $modelUploadFilePath);
+        move_uploaded_file($imgFile['tmp_name'], $imgUploadFilePath) ;
 
         function generateUniqueId() {
             return mt_rand(100000000, 999999999); // 9桁のランダムな数字を生成
@@ -104,9 +106,9 @@ $response = [
 
         // コミット
         $response["success"] = True;
-        
-    } else {
-        $response["message"] = "Failed to move uploaded files.";
+    }catch (Exception $e){
+        $response["message"] = $e->getMessage();
+        error_log('error.log');
     }
 /* } else {
     $response["message"] = "Invalid request method.";

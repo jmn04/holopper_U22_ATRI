@@ -10,8 +10,7 @@ const header = css`
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: #0081ca;
-    border-bottom: #b6d6e4 solid 2px;
+    background-color: white;
 `;
 
 const headerUser = css`
