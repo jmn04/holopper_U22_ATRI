@@ -8,37 +8,34 @@ import { Model } from './user/model/Model.jsx';
 import { ModelDetail } from './user/modelDetail/modelDetail.jsx';
 import Settings from './user/settings/SettingsPage.jsx';
 import { Login } from './user/login/login.jsx';
-import { Header } from './components/layout/header.jsx';
+/* import { Header } from './components/layout/header.jsx'; */
 import { Navigation } from './components/layout/navigation.jsx';
 import { Footer } from './components/layout/footer.jsx';
 import { AuthContext } from './AuthContext';
 import { FileUpload } from './user/upload/upload.jsx';
 import { Show } from './user/show/show.jsx'
+import { Register } from './user/createUser/register.jsx';
 
 
 const box = css`
-  display: grid;
+  display: flex;
   width: 100%;
   height: 100vh;
-  grid-template-rows: 10vh 1fr 5vh;
-  // grid-template-columns: 100px 1fr;
 `
 
 const main = css`
   overflow: hidden;
-  margin: 0 5vw;
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
+  flex: 1;
 `;
 
 const mainWrapper = css`
 width: 100%;
-height: 100%;
-padding: 5%;
+height: 90%;
+padding: 2.5%;
+margin-top: 5vh;
 `
 
 const mainContent = css`
-border: solid 1px #000000;
 height: 100%;
 padding: 1rem;
 > div{
@@ -55,13 +52,13 @@ grid-column: 2 / 3;
 `
 
 const navigation = css`
-grid-row: 1 / 4;
-grid-column: 1 / 2;
+width: 20%;
+max-width: 200px;
 `
 
 const footer = css`
-grid-row: 3 / 4;
-grid-column: 2 / 3;
+width: 100%;
+height: 5%;
 `
 
 const contentBox = css`
@@ -74,8 +71,9 @@ function App() {
   console.log(userID)
   const navigate = useNavigate();
   const location = useLocation();
+  const pathname = location.pathname;
   useEffect(() => {
-    if (userID == null) {
+    if (userID == null && pathname != '/register') {
       navigate('/login');
     }
   }, [userID,location.pathname]);
@@ -92,10 +90,10 @@ function App() {
     return null; // ユーザーがログインしていない場合、何もレンダリングしない
   } */
   return (
-          <div css={box}>
+          <div css={box}>{/* 
             <div css={header}>
               <Header userName={"テスト"}></Header>
-            </div>
+            </div> */}
             <div css={navigation}>
               <Navigation></Navigation>
             </div>
@@ -107,15 +105,16 @@ function App() {
                     <Route path="/model" element={<Model />} />
                     <Route path="/model/:model_id" element={<ModelDetail />} />
                     <Route path="/login" element={<Login/>} />
+                    <Route path="/register" element={<Register/>} />
                     <Route path="/show/:model_id" element={<Show />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/upload" element={<FileUpload />} />
                   </Routes>
                 </div>
               </div>
-            </div>
-            <div css={footer}>
-              <Footer></Footer>
+              <div css={footer}>
+                <Footer></Footer>
+              </div>
             </div>
           </div>
   );

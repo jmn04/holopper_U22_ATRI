@@ -139,7 +139,7 @@ export const ModelDetail = () => {
       body: JSON.stringify({ user_id: userID, model_id: model_id })
     };
 
-    fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/model/`, options)
+    fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/model/`, options)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
@@ -169,7 +169,7 @@ export const ModelDetail = () => {
               <div key={index} css={modelContainer}>
                 <div css={contentBox}>
                     <div css={img}>
-                        <img src={`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/assets/img/`+item.img_file_name} alt="" />
+                        <img src={`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/assets/img/`+item.img_file_name} alt="" />
                     </div>
                     <div css={text}>
                         <h3>モデル名：{item.title}</h3>

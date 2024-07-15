@@ -4,15 +4,17 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useState, useContext, useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 
-export const Login = () => {
+export const Register = () => {
+    const [username, setUsername] = useState('');
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { isLoggedIn,login } = useContext(AuthContext);
     const [isFading, setIsFading] = useState(false);
+    const navigate = useNavigate();
 
     // エラーメッセージのフェードアウト処理
     useEffect(() => {
@@ -36,21 +38,16 @@ export const Login = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/login/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/register/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ mail: mail, password: password }),
+                body: JSON.stringify({ username: username, mail: mail, password: password }),
             });
-            console.log("aaa")
             const data = await response.json();
-            console.log(data)
-            if (response.ok && data.is_login) {
-                login(data); 
-                localStorage.setItem('user', JSON.stringify(data)); 
-                // ログイン成功時の処理
-                console.log('Login successful', data);
+            if (response.ok && data.is_register) {
+                navigate('/login');
             } else {
                 // ログイン失敗時のエラーメッセージを設定
                 setError(data.message || 'Login failed');
@@ -70,14 +67,21 @@ export const Login = () => {
                 {error && <Alert severity="error"
                 css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>メールアドレスまたはパスワードに誤りがあります。</Alert>}
                 {/* タイトル */}
-                <h2 css={titleStyle}>ログイン</h2>
+                <h2 css={titleStyle}>アカウント登録</h2>
                 {/* 入力フォーム */}
                 <form onSubmit={handleSubmit} css={formStyle}>
                     <div>
                         {/* ユーザー名入力 */}
+                        <TextField type="text" value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        label="User Name"  variant="outlined" required
+                        css={textFieldStyle} />
+                    </div>
+                    <div>
+                        {/* パスワード入力 */}
                         <TextField type="text" value={mail}
                         onChange={(e) => setMail(e.target.value)}
-                        label="Mail Address"  variant="outlined" required
+                        label="mail" variant="outlined" required
                         css={textFieldStyle} />
                     </div>
                     <div>
@@ -89,10 +93,10 @@ export const Login = () => {
                     </div>
                         {/* ログインボタン */}
                         <Button type="submit" variant="contained"
-                        color="primary" css={buttonStyle}>Login</Button>
+                        color="primary" css={buttonStyle}>送信</Button>
                 </form>
                 <div css={textStyle}>
-                    <Link to="/register">ユーザー登録がお済みでない方はこちら</Link>
+                    <Link to="/login">ユーザー登録がお済みの方はこちら</Link>
                 </div>
             </div>
         )}
@@ -109,6 +113,7 @@ const textStyle = css({
         textDecoration: 'underline'
     }
 });
+
 
 const fadeOut = keyframes({
     from: { opacity: 1 },
