@@ -32,6 +32,10 @@ docker-compose.ymlが存在するディレクトリで、\
 >Mail Address：test@test.com\
 >password：password
 
+## ■ swagger-uiにアクセスする
+http://localhost:8080
+
+
 ## ■ コンテナの停止・削除
 `docker-compose down`\
 を実行してください。
