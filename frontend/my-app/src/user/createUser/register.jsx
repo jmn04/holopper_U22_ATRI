@@ -38,7 +38,7 @@ export const Register = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/register/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/register/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

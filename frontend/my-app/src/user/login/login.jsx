@@ -36,7 +36,7 @@ export const Login = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/login/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
