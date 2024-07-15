@@ -1,0 +1,8 @@
+Flask
+flask-cors
+flask-socketio
+python-dotenv
+opencv-python
+mediapipe
+numpy
+pandas
