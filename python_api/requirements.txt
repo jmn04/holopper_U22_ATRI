@@ -3,6 +3,8 @@ flask-cors
 flask-socketio
 python-dotenv
 opencv-python
+PyOpenGL
+PyOpenGL_accelerate
 mediapipe
 numpy
 pandas
