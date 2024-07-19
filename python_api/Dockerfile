@@ -6,6 +6,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 RUN apt -y update && apt -y upgrade
 RUN apt -y install libopencv-dev
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
 
 COPY . .
 

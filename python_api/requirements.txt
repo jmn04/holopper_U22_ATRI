@@ -1,6 +1,8 @@
 Flask
 flask-cors
 flask-socketio
+python-socketio
+python-engineio
 python-dotenv
 opencv-python
 PyOpenGL
