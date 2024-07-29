@@ -6,6 +6,7 @@ import { Canvas, render, useFrame } from '@react-three/fiber';
 import { useGLTF } from "@react-three/drei";
 import { OrbitControls, PerspectiveCamera, Stage,Clone } from '@react-three/drei';
 import io from "socket.io-client"
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
 const show = css`
   position: absolute;
@@ -17,7 +18,7 @@ const show = css`
   background: black;
 `;
 
-/* const socket = io(`http://${process.env.REACT_APP_IP_ADRESS}:5000`) */
+const socket = io(`http://${process.env.REACT_APP_IP_ADRESS}:5000`)
 
 const Model = ({ url }) => {
   const { scene } = useGLTF(url);
@@ -25,15 +26,50 @@ const Model = ({ url }) => {
   const [isRotating, setIsRotating] = useState(false);
   const [data, setData] = useState('');
   const [streamActive, setStreamActive] = useState(true); 
+  
+  const location = useLocation();
 
   useEffect(() => {
+    const requestFullscreen = () => {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.mozRequestFullScreen) { // Firefox
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { // IE/Edge
+        elem.msRequestFullscreen();
+      }
+    };
+
+    const exitFullscreen = () => {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) { // Firefox
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { // IE/Edge
+        document.msExitFullscreen();
+      }
+    };
+
+    requestFullscreen();
+    return () => {
+      exitFullscreen();
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {    
+
     const fetchStream = () => {
-      /* socket.emit('join', {room: 'room1'});
+      socket.emit('join', {room: 'room1'});
       socket.on('response', (data)=> {
         setData(data)
       })
 
-      socket.emit('run-script'); */
+      socket.emit('run-script');
     }
     /* const fetchStream = async () => {
       const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/run-script`);
@@ -52,16 +88,15 @@ const Model = ({ url }) => {
     fetchStream();
     return () => {
       setStreamActive(false);
-      /* fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
+      fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
         }
         return res.json();
-      })  */
+      }) 
     };
   }, [streamActive]);
-
   useEffect(() => {
     if (data === "swipe") {
       setIsRotating(true);
@@ -78,11 +113,11 @@ const Model = ({ url }) => {
 
   return (
     <group ref={group}>
-      <Clone object={scene} scale={1.2} position={[-1,0,0]} rotation={[Math.PI/2 ,0,Math.PI/2]}/>
+      {/* <Clone object={scene} scale={1.2} position={[-1,0,0]} rotation={[Math.PI/2 ,0,Math.PI/2]}/>
       <Clone object={scene} scale={1.2} position={[1,0,0]} rotation={[Math.PI/2 ,0,Math.PI/2]}/>
       <Clone object={scene} scale={1.2} position={[0,-1,0]} />
-      <Clone object={scene} scale={1.2} position={[0,1,0]} rotation={[0,Math.PI,0]}/>
-      {/* <primitive object={scene} scale={[1.2, 1.2, 1.2]} /> */}
+      <Clone object={scene} scale={1.2} position={[0,1,0]} rotation={[0,Math.PI,0]}/> */}
+      <primitive object={scene} scale={[1.2, 1.2, 1.2]} />
     </group>);
 };
 
