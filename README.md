@@ -32,6 +32,12 @@ docker-compose.ymlが存在するディレクトリで、\
 >Mail Address：test@test.com\
 >password：password
 
+## ■ Python APIの起動
+Docker起動中のコマンドプロンプトとは別にウィンドウを開き、
+`cd python_api`\
+`python test.py`\
+を実行してください。
+
 ## ■ コンテナの停止・削除
 `docker-compose down`\
 を実行してください。
