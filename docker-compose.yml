@@ -24,17 +24,18 @@ services:
     networks:
       - my_network
   
-  python_api:
-    container_name: python-api
-    build: ./python_api
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./python_api:/usr/src/app
-    depends_on:
-      - db
-    networks:
-      - my_network
+  # OpenCVのカメラが起動しないため、コメントアウトしている
+  # python_api:
+  #   container_name: python-api
+  #   build: ./python_api
+  #   ports:
+  #     - "5000:5000"
+  #   volumes:
+  #     - ./python_api:/usr/src/app
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - my_network
 
   db:
     container_name: mysql-db
