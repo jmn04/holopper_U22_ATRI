@@ -33,7 +33,7 @@ docker-compose.ymlが存在するディレクトリで、\
 >password：password
 
 ## ■ Python APIの起動
-Docker起動中のコマンドプロンプトとは別にウィンドウを開き、
+Docker起動中のコマンドプロンプトとは別にウィンドウを開き、\
 `cd python_api`\
 `python test.py`\
 を実行してください。
