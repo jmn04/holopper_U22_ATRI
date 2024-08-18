@@ -17,7 +17,7 @@ const show = css`
   background: black;
 `;
 
-/* const socket = io(`http://${process.env.REACT_APP_IP_ADDRESS}:5000`) */
+const socket = io(`http://${process.env.REACT_APP_IP_ADDRESS}:5000`)
 
 const Model = ({ url }) => {
   const { scene } = useGLTF(url);
@@ -28,12 +28,12 @@ const Model = ({ url }) => {
 
   useEffect(() => {
     const fetchStream = () => {
-      /* socket.emit('join', {room: 'room1'});
+      socket.emit('join', {room: 'room1'});
       socket.on('response', (data)=> {
         setData(data)
       })
 
-      socket.emit('run-script'); */
+      socket.emit('run-script');
     }
     /* const fetchStream = async () => {
       const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:5000/run-script`);
@@ -52,13 +52,13 @@ const Model = ({ url }) => {
     fetchStream();
     return () => {
       setStreamActive(false);
-      /* fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:5000/end-script`)
+      fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:5000/end-script`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
         }
         return res.json();
-      })  */
+      })
     };
   }, [streamActive]);
 
