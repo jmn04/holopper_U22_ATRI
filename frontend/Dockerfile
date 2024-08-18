@@ -7,6 +7,8 @@ WORKDIR /app
 # package.jsonとpackage-lock.jsonをコピー
 COPY package*.json ./
 
+RUN apt-get update && apt-get upgrade -y
+
 # 依存関係をインストール
 RUN npm install
 

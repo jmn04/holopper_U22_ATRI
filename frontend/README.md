@@ -1,4 +1,4 @@
-# frontend
+# Container Name : react-frontend
 ## 必要なパッケージインストール
 自身のPC環境でReactを使用する場合は下記パッケージを使用することが必要です
 ### ReactとDOM

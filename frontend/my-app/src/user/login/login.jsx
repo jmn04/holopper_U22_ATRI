@@ -36,7 +36,7 @@ export const Login = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/login/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export const Login = () => {
             <div>
                 {/* フラッシュメッセージ */}
                 {error && <Alert severity="error"
-                css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>{error}</Alert>}
+                css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>メールアドレスまたはパスワードに誤りがあります。</Alert>}
                 {/* タイトル */}
                 <h2 css={titleStyle}>ログイン</h2>
                 {/* 入力フォーム */}
@@ -91,8 +91,8 @@ export const Login = () => {
                         <Button type="submit" variant="contained"
                         color="primary" css={buttonStyle}>Login</Button>
                 </form>
-                <div>
-                    <Link to="/register">登録する</Link>
+                <div css={textStyle}>
+                    <Link to="/register">ユーザー登録がお済みでない方はこちら</Link>
                 </div>
             </div>
         )}
@@ -102,6 +102,13 @@ export const Login = () => {
 
 // スタイル設定
 const mgBottom = "4.2rem";
+const textStyle = css({
+    textAlign: 'center',
+    marginTop: '1.4rem',
+    '&:hover': {
+        textDecoration: 'underline'
+    }
+});
 
 const fadeOut = keyframes({
     from: { opacity: 1 },

@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import { useState, useContext, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
 
 export const Register = () => {
@@ -38,7 +38,7 @@ export const Register = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/register/`, {
+            const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/register/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export const Register = () => {
             <div>
                 {/* フラッシュメッセージ */}
                 {error && <Alert severity="error"
-                css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>{error}</Alert>}
+                css={css({animation: isFading ? `${fadeOut} 1s forwards` : 'none'})}>メールアドレスまたはパスワードに誤りがあります。</Alert>}
                 {/* タイトル */}
                 <h2 css={titleStyle}>アカウント登録</h2>
                 {/* 入力フォーム */}
@@ -95,6 +95,9 @@ export const Register = () => {
                         <Button type="submit" variant="contained"
                         color="primary" css={buttonStyle}>送信</Button>
                 </form>
+                <div css={textStyle}>
+                    <Link to="/login">ユーザー登録がお済みの方はこちら</Link>
+                </div>
             </div>
         )}
         </div>
@@ -103,6 +106,14 @@ export const Register = () => {
 
 // スタイル設定
 const mgBottom = "4.2rem";
+const textStyle = css({
+    textAlign: 'center',
+    marginTop: '1.4rem',
+    '&:hover': {
+        textDecoration: 'underline'
+    }
+});
+
 
 const fadeOut = keyframes({
     from: { opacity: 1 },

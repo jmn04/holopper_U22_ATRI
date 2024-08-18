@@ -18,7 +18,7 @@ const show = css`
   background: black;
 `;
 
-const socket = io(`http://${process.env.REACT_APP_IP_ADRESS}:5000`)
+const socket = io(`http://${process.env.REACT_APP_IP_ADDRESS}:5000`)
 
 const Model = ({ url }) => {
   const { scene } = useGLTF(url);
@@ -44,14 +44,15 @@ const Model = ({ url }) => {
     };
 
     const exitFullscreen = () => {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) { // Firefox
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) { // Chrome, Safari, and Opera
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) { // IE/Edge
-        document.msExitFullscreen();
+      const elem = document.documentElement;
+      if (elem.exitFullscreen) {
+        elem.exitFullscreen();
+      } else if (elem.mozCancelFullScreen) { // Firefox
+        elem.mozCancelFullScreen();
+      } else if (elem.webkitExitFullscreen) { // Chrome, Safari, and Opera
+        elem.webkitExitFullscreen();
+      } else if (elem.msExitFullscreen) { // IE/Edge
+        elem.msExitFullscreen();
       }
     };
 
@@ -72,7 +73,7 @@ const Model = ({ url }) => {
       socket.emit('run-script');
     }
     /* const fetchStream = async () => {
-      const response = await fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/run-script`);
+      const response = await fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:5000/run-script`);
       console.log(response.body)
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -88,13 +89,13 @@ const Model = ({ url }) => {
     fetchStream();
     return () => {
       setStreamActive(false);
-      fetch(`http://${process.env.REACT_APP_IP_ADRESS}:5000/end-script`)
+      fetch(`http://${process.env.REACT_APP_IP_ADDRESS}:5000/end-script`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('ネットワーク応答が正常ではありません');
         }
         return res.json();
-      }) 
+      })
     };
   }, [streamActive]);
   useEffect(() => {
@@ -143,7 +144,7 @@ export const Show = () => {
   const [url, setUrl] = useState('');
   const modelFailName = location.state ? location.state.state : '';
   useEffect(() => {
-    setUrl(`http://${process.env.REACT_APP_IP_ADRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/getModel/index.php?file=${modelFailName}`);
+    setUrl(`http://${process.env.REACT_APP_IP_ADDRESS}:${process.env.REACT_APP_BACKEND_PORT}/api/getModel/index.php?file=${modelFailName}`);
   }, []);
 
 
