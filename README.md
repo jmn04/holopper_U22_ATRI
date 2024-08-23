@@ -11,6 +11,19 @@ Webアプリをすぐに構築できるよう、Dockerを使用しています�
 <br>
 
 # 実行手順
+## ■ 仮想環境の構築
+※あらかじめanacondaをインストールしていること、パスが通っていることを確認してください。\
+コマンドプロンプトを起動し、python_apiがカレントディレクトリとなるようにしてください。\
+次に、`conda create -n python_api python=3.9.18`を実行し、`conda activate python_api`を実行。\
+そして、`pip install -r pip_requirements.txt`を実行。\
+さらに、 `conda install --file conda_requirements.txt`を実行。\
+これで仮想環境の構築は完了です。
+ 
+## ■ python_apiの実行
+仮想環境の構築の続きであることを前提に説明します。\
+`python test.py`を実行してください。\
+以後使用するコマンドプロンプトは新しいウィンドウまたはタブにて実行してください。
+
 ## ■ IPアドレスの設定
 アプリケーションフォルダを開き、frontend/my-app/.envの\
 `REACT_APP_IP_ADDRESS = {IP_ADDRESS}`をお使いの端末のIPv4アドレスに書き換えてください。\
